@@ -15,24 +15,22 @@ class Exercise extends Model {
         },
         exerciseName: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
     
         sets: {
             type: DataTypes.INTEGER,
             allowNull: true,
-            unique: false,
         },
         reps: {
             type: DataTypes.INTEGER,
-            allowNull: true,
-            unique: false,
+            allowNull: true
         },
 
-    //TODO: Need to figure out date datatype.
-        dateAssigned: {
-            type: DataTypes.timestamps
-        },
+    // //TODO: Need to figure out date datatype.
+    //     dateAssigned: {
+    //         type: Date
+    //     },
     },
 
     {

@@ -1,15 +1,21 @@
-//GMS server app for serving our login token
-
+const path = require('path');
 const express = require('express');
-const cors = require('cors');
+const routes = require('./controllers');
+
+
+const sequelize = require('./config/connection');
+
+
 const app = express();
+const PORT = process.env.PORT || 3001;
 
-app.use(cors());
 
-app.use('/login', (req, res) => {
-    res.send({
-        token: 'test123'
-    });
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(routes);
+
+// Force: is a method that resets dB information, true wipes it, false does not.
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log(`Now listening on Port ${PORT}`));
 });
-
-app.listen(8080, () => console.log('TokenServer is running on http://localhost:8080/login'));

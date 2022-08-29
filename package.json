@@ -19,6 +19,7 @@
   "homepage": "https://github.com/hoeferm2/gabe-rainier-josh-matt-p3-backend#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mysql2": "^2.3.3",
