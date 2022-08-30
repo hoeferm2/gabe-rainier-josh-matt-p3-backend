@@ -26,6 +26,24 @@ class Exercise extends Model {
             type: DataTypes.INTEGER,
             allowNull: true
         },
+        weight: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        client_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'client',
+              key: 'id',
+            },
+          },
+          client_name: {
+            type: DataTypes.STRING,
+            references: {
+              model: 'client',
+              key: 'username',
+            },
+          },
 
     // //TODO: Need to figure out date datatype.
     //     dateAssigned: {
@@ -36,7 +54,7 @@ class Exercise extends Model {
     {
     
         sequelize,
-        timestamps: false,
+        timestamps: true,
         freezeTableName: true,
         underscored: true,
         modelName: 'exercise',
