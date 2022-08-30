@@ -69,7 +69,6 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// TODO: EDIT COACH
 
 router.put('/:id', async (req, res) => {
   try {
