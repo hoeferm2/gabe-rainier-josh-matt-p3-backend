@@ -37,19 +37,17 @@ class Exercise extends Model {
               key: 'id',
             },
           },
-          client_name: {
-            type: DataTypes.STRING,
-            references: {
-              model: 'client',
-              key: 'username',
-            },
+          isCompleted: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+            }
           },
 
     // //TODO: Need to figure out date datatype.
     //     dateAssigned: {
     //         type: Date
     //     },
-    },
+    
 
     {
     
