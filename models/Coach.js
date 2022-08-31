@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class Coach extends Model {
-    //     checkPassword(coachPw) {
-    //         return bcrypt.compareSync(coachPw, this.password)
-    //     };
+    checkPassword(coachPw) {
+        return bcrypt.compareSync(coachPw, this.password)
+    };
 };
 
 Coach.init(
@@ -16,14 +16,14 @@ Coach.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        // firstName: {
-        //     type: DataTypes.STRING,
-        //     allowNull: true,
-        // },
-        // lastName: {
-        //     type: DataTypes.STRING,
-        //     allowNull: true,
-        // },
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         username: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -37,36 +37,30 @@ Coach.init(
                 isEmail: true,
             },
         },
-        // password: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        //     validate: {
-        //         len: [8, 20]
-        //     },
-        // },
-        // is_coach: {
-        //     type: DataTypes.BOOLEAN,
-        //     defaultValue: true,
-        //     allowNull: true
-        // },
-        coach_code: {
-            type: DataTypes.INTEGER,
-            // autoIncrement: true,
+        password: {
+            type: DataTypes.STRING,
             allowNull: false,
-        }
+            validate: {
+                len: [8, 20]
+            },
+        },
+        // coach_code: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        // }
     },
 
     {
-        // hooks: {
-        //     beforeCreate: async (newcoachData) => {
-        //         newcoachData.password = await bcrypt.hash(newcoachData.password, 10);
-        //         return newcoachData;
-        //     },
-        //     beforeUpdate: async (updatedcoachData) => {
-        //         updatedcoachData.password = await bcrypt.hash(updatedcoachData.password, 10);
-        //         return updatedcoachData;
-        //     },
-        // },
+        hooks: {
+            beforeCreate: async (newcoachData) => {
+                newcoachData.password = await bcrypt.hash(newcoachData.password, 10);
+                return newcoachData;
+            },
+            beforeUpdate: async (updatedcoachData) => {
+                updatedcoachData.password = await bcrypt.hash(updatedcoachData.password, 10);
+                return updatedcoachData;
+            },
+        },
         sequelize,
         timestamps: false,
         freezeTableName: true,

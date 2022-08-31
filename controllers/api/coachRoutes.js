@@ -3,7 +3,7 @@ const { Client, Coach, } = require('../../models');
 
 router.get("/", (req, res) => {
   Coach.findAll({
-    // include: [Client]
+    include: [Client]
   }).then(data => {
     res.json(data)
   }).catch(err => {
@@ -13,11 +13,11 @@ router.get("/", (req, res) => {
 
 //TODO: get Coach by id
 
-router.get("/:username", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const coachData = await Coach.findOne({
       where: {
-        username: req.params.username
+        username: req.params.id
       }
     },
       {
@@ -25,7 +25,7 @@ router.get("/:username", async (req, res) => {
       });
 
     if (!coachData) {
-      res.status(404).json({ message: 'No Coach found with that email!' });
+      res.status(404).json({ message: 'No Coach found with that id!' });
       return;
     }
 
@@ -40,9 +40,11 @@ router.get("/:username", async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const newCoach = await Coach.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       username: req.body.username,
       email: req.body.email,
-      coach_code: req.body.coach_code
+      password: req.body.password
     });
 
     res.status(200).json(newCoach);
