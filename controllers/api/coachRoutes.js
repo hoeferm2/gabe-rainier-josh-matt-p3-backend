@@ -20,7 +20,7 @@ router.get("/:email", async (req, res) => {
     });
 
     if (!coachData) {
-      res.status(404).json({ message: 'No Coach found with that id!' });
+      res.status(404).json({ message: 'No Coach found with that email!' });
       return;
     }
 
@@ -35,11 +35,9 @@ router.get("/:email", async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const newCoach = await Coach.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password,
+      coach_code: req.body.coach_code
     });
 
     res.status(200).json(newCoach);

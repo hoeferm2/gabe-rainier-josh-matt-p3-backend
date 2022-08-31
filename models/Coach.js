@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class Coach extends Model {
-//     checkPassword(coachPw) {
-//         return bcrypt.compareSync(coachPw, this.password)
-//     };
+    //     checkPassword(coachPw) {
+    //         return bcrypt.compareSync(coachPw, this.password)
+    //     };
 };
 
 Coach.init(
@@ -50,7 +50,7 @@ Coach.init(
         },
         coach_code: {
             type: DataTypes.INTEGER,
-            autoIncrement: true,
+            // autoIncrement: true,
             allowNull: false,
         }
     },
