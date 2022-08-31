@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class Client extends Model {
@@ -16,14 +16,15 @@ Client.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        firstName: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-        lastName: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
+        // Just Username
+        // firstName: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true,
+        // },
+        // lastName: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true,
+        // },
         username: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -37,13 +38,14 @@ Client.init(
                 isEmail: true,
             },
         },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [8, 20]
-            },
-        },
+        // Handled w/ Auth0
+        // password: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     validate: {
+        //         len: [8, 20]
+        //     },
+        // },
         coach_id: {
             type: DataTypes.INTEGER,
             references: {
@@ -54,16 +56,17 @@ Client.init(
     },
 
     {
-        hooks: {
-            beforeCreate: async (newClientData) => {
-                newClientData.password = await bcrypt.hash(newClientData.password, 10);
-                return newClientData;
-            },
-            beforeUpdate: async (updatedClientData) => {
-                updatedClientData.password = await bcrypt.hash(updatedClientData.password, 10);
-                return updatedClientData;
-            },
-        },
+        //no need for Bcrypt
+        // hooks: {
+        //     beforeCreate: async (newClientData) => {
+        //         newClientData.password = await bcrypt.hash(newClientData.password, 10);
+        //         return newClientData;
+        //     },
+        //     beforeUpdate: async (updatedClientData) => {
+        //         updatedClientData.password = await bcrypt.hash(updatedClientData.password, 10);
+        //         return updatedClientData;
+        //     },
+        // },
         sequelize,
         timestamps: false,
         freezeTableName: true,
