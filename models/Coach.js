@@ -47,6 +47,11 @@ Coach.init(
         is_coach: {
             type: DataTypes.BOOLEAN,
             default: true
+        },
+        coach_code: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            allowNull: false,
         }
     },
 
