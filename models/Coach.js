@@ -48,11 +48,11 @@ Coach.init(
             type: DataTypes.BOOLEAN,
             default: true
         },
-        coach_code: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            allowNull: false,
-        }
+        // coach_code: {
+        //     type: DataTypes.INTEGER,
+        //     autoIncrement: true,
+        //     allowNull: false,
+        // }
     },
 
     {
