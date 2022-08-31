@@ -2,33 +2,33 @@ const router = require('express').Router();
 const { Client, Coach, } = require('../../models');
 
 router.get("/", (req, res) => {
-    Coach.findAll({
-      include: [Client,]
-    }).then(data => {
-      res.json(data)
-    }).catch(err => {
-      res.status(500).json({ msg: "womp womp", err })
-    })
+  Coach.findAll({
+    include: [Client,]
+  }).then(data => {
+    res.json(data)
+  }).catch(err => {
+    res.status(500).json({ msg: "womp womp", err })
   })
+})
 
 //TODO: get Coach by id
 
-router.get("/:id", async (req, res) => {
+router.get("/:email", async (req, res) => {
   try {
-      const coachData = await Coach.findByPk(req.params.id, {
-        include: { model: Client },
-       });
-  
-      if (!coachData) {
-        res.status(404).json({ message: 'No Coach found with that id!' });
-        return;
-      }
-  
-      res.status(200).json(coachData);
-    } catch (err) {
-      res.status(500).json(err);
+    const coachData = await Coach.findByPk(req.params.email, {
+      include: { model: Client },
+    });
+
+    if (!coachData) {
+      res.status(404).json({ message: 'No Coach found with that id!' });
+      return;
     }
-  });
+
+    res.status(200).json(coachData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 //CREATES Coach
@@ -75,11 +75,11 @@ router.put('/:id', async (req, res) => {
     const updateCoach = await Coach.update(
       req.body,
       {
-  
-      where: {
-        id: req.params.id,
-      },
-    });
+
+        where: {
+          id: req.params.id,
+        },
+      });
 
     if (!updateCoach) {
       res.status(404).json({ message: 'No coach found with this id!' });
