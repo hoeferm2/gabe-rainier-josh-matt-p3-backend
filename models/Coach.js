@@ -50,7 +50,7 @@ Coach.init(
         },
         coach_code: {
             type: DataTypes.INTEGER,
-            // autoIncrement: true,
+            autoIncrement: true,
             allowNull: false,
         }
     },

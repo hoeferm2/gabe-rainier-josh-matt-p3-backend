@@ -53,6 +53,10 @@ Client.init(
               key: 'id',
             },
           },
+        is_coach: {
+            type: DataTypes.BOOLEAN,
+            default: false
+        }
     },
 
     {
