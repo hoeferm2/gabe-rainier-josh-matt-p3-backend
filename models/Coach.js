@@ -44,13 +44,14 @@ Coach.init(
         //         len: [8, 20]
         //     },
         // },
-        is_coach: {
-            type: DataTypes.BOOLEAN,
-            default: true
-        },
+        // is_coach: {
+        //     type: DataTypes.BOOLEAN,
+        //     defaultValue: true,
+        //     allowNull: true
+        // },
         coach_code: {
             type: DataTypes.INTEGER,
-            autoIncrement: true,
+            // autoIncrement: true,
             allowNull: false,
         }
     },

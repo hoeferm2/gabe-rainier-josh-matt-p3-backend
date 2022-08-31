@@ -3,7 +3,7 @@ const { Client, Coach, } = require('../../models');
 
 router.get("/", (req, res) => {
   Coach.findAll({
-    include: [Client,]
+    // include: [Client]
   }).then(data => {
     res.json(data)
   }).catch(err => {
@@ -13,11 +13,16 @@ router.get("/", (req, res) => {
 
 //TODO: get Coach by id
 
-router.get("/:email", async (req, res) => {
+router.get("/:username", async (req, res) => {
   try {
-    const coachData = await Coach.findByPk(req.params.email, {
-      include: { model: Client },
-    });
+    const coachData = await Coach.findOne({
+      where: {
+        username: req.params.username
+      }
+    },
+      {
+        include: { model: Client },
+      });
 
     if (!coachData) {
       res.status(404).json({ message: 'No Coach found with that email!' });
