@@ -2,7 +2,7 @@ const express = require('express');
 const routes = require('./controllers');
 const app = express();
 const PORT = process.env.PORT || 3001;
-const cors = require('cors')
+// const cors = require('cors')
 // const authConfig = require("../auth_config.json");
 // const { expressjwt: jwt } = require("express-jwt");
 // const jwksRsa = require("jwks-rsa");
@@ -12,7 +12,7 @@ const sequelize = require('./config/connection');
 
 
 //GMS DO NOT MOVE APP.USE CORS OR EXPRESS FROM THEIR POSITIONING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-app.use(cors());
+// app.use(cors());
 
 
 app.use(express.json());
