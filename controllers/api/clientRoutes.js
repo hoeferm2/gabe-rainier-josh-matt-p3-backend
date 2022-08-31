@@ -13,9 +13,9 @@ router.get("/", (req, res) => {
 
 //TODO: get client by id
 
-  router.get("/:id", async (req, res) => {
+  router.get("/:email", async (req, res) => {
 try {
-    const clientData = await Client.findByPk(req.params.id, {
+    const clientData = await Client.findByPk(req.params.email, {
       include: { model: Exercise },
      });
 
