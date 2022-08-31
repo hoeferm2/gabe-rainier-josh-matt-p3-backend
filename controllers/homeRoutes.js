@@ -5,9 +5,9 @@ const { Client, Coach, Exercise } = require('../models');
 
 
 
-router.get('/', (req, res) => {
-    res.send('welcome this is the home page.')
-})
+// router.get('/', (req, res) => {
+//     res.send('welcome this is the home page.')
+// })
 
 
 // GET PUBLIC PATH
