@@ -2,22 +2,22 @@ const router = require('express').Router();
 const { Client, Exercise } = require('../../models');
 
 router.get("/", (req, res) => {
-    Client.findAll({
-      include: [Exercise,]
-    }).then(data => {
-      res.json(data)
-    }).catch(err => {
-      res.status(500).json({ msg: "womp womp", err })
-    })
-  });
+  Client.findAll({
+    include: [Exercise,]
+  }).then(data => {
+    res.json(data)
+  }).catch(err => {
+    res.status(500).json({ msg: "womp womp", err })
+  })
+});
 
 //TODO: get client by id
 
-  router.get("/:email", async (req, res) => {
-try {
-    const clientData = await Client.findByPk(req.params.email, {
+router.get("/:id", async (req, res) => {
+  try {
+    const clientData = await Client.findByPk(req.params.id, {
       include: { model: Exercise },
-     });
+    });
 
     if (!clientData) {
       res.status(404).json({ message: 'No Client found with that id!' });
@@ -31,16 +31,13 @@ try {
 });
 
 
-  //CREATES Client
+//CREATES Client
 router.post('/', async (req, res) => {
   try {
     const newClient = await Client.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password,
-      coach_id: req.body.coach_id
+      password: req.body.password
     });
 
     res.status(200).json(newClient);
@@ -48,6 +45,42 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+
+
+router.post('/login', async (req, res) => {
+  try {
+    const existingUserData = await Client.findOne({ where: { email: req.body.email } });
+    if (!existingUserData) {
+      res
+        .status(400)
+        .json({ message: 'No client was found with that email.' });
+      return;
+    }
+    const validPassword = await existingUserData.checkPassword(req.body.password);
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+    req.session.save(() => {
+      req.session.clientId = existingUserData.id;
+      req.session.username = existingUserData.username;
+      req.session.logged_in = true;
+      console.log(existingUserData.id);
+      console.log(req.session.logged_in);
+      res.json({ coach: existingUserData, message: 'Client successfully logged in.' });
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+
+
+
+
 
 // // TODO: DELETE Client
 router.delete('/:id', async (req, res) => {
@@ -76,10 +109,10 @@ router.put('/:id', async (req, res) => {
     const updateClient = await Client.update(
       req.body,
       {
-      where: {
-        id: req.params.id,
-      },
-    });
+        where: {
+          id: req.params.id,
+        },
+      });
 
     if (!updateClient) {
       res.status(404).json({ message: 'No client found with this id!' });
