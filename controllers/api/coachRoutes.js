@@ -40,8 +40,6 @@ router.get("/:id", async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const newCoach = await Coach.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
       username: req.body.username,
       email: req.body.email,
       password: req.body.password
