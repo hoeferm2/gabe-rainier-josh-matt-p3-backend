@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { Client, Coach, } = require('../../models');
 
+
+//TODO: WORKING
 router.get("/", (req, res) => {
   Coach.findAll({
     include: [Client]
@@ -12,7 +14,7 @@ router.get("/", (req, res) => {
 })
 
 //TODO: get Coach by id
-
+//TODO: WORKING
 router.get("/:id", async (req, res) => {
   try {
     const coachData = await Coach.findOne(
@@ -31,7 +33,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
+//TODO: WORKING
 //CREATES Coach
 router.post('/', async (req, res) => {
   try {
@@ -46,6 +48,41 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+
+//TODO: WORKING
+//GMS LOGIN coach
+router.post('/login', async (req, res) => {
+  try {
+    const existingUserData = await Coach.findOne({ where: { email: req.body.email } });
+    if (!existingUserData) {
+      res
+        .status(400)
+        .json({ message: 'No coach was found with that email.' });
+      return;
+    }
+    const validPassword = await existingUserData.checkPassword(req.body.password);
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+    req.session.save(() => {
+      req.session.coachId = existingUserData.id;
+      req.session.username = existingUserData.username;
+      req.session.logged_in = true;
+      console.log(existingUserData.id);
+      console.log(req.session.logged_in);
+      res.json({ coach: existingUserData, message: 'Coach successfully logged in.' });
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+
+
 
 // TODO: DELETE COACH
 

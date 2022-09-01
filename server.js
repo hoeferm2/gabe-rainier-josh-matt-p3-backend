@@ -1,22 +1,28 @@
 const express = require('express');
+const session = require('express-session');
 const routes = require('./controllers');
 const cors = require('cors')
-// const authConfig = require("../auth_config.json");
-// const { expressjwt: jwt } = require("express-jwt");
-// const jwksRsa = require("jwks-rsa");
 const sequelize = require('./config/connection');
-
-
-
-
-//GMS DO NOT MOVE APP.USE CORS OR EXPRESS FROM THEIR POSITIONING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+const sess = {
+  secret: 'Protected access pages',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
+
+app.use(session(sess));
+
 app.use(express.json());
 app.use(cors());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 // Force: is a method that resets dB information, true wipes it, false does not.
