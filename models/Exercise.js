@@ -42,7 +42,8 @@ Exercise.init(
             defaultValue: false
         },
         dateSelected: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false,
         }
     },
 
