@@ -27,6 +27,7 @@ router.get("/", (req, res) => {
       reps: req.body.reps,
       weight: req.body.weight,
       client_id: req.body.client_id,
+      dateSelected: req.body.dateSelected
       });
   
       res.status(200).json(newExercise);
