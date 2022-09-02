@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class Client extends Model {
-    checkPassword(clientPw) {
-        return bcrypt.compareSync(clientPw, this.password)
-    };
+    // checkPassword(clientPw) {
+    //     return bcrypt.compareSync(clientPw, this.password)
+    // };
 };
 
 Client.init(
@@ -51,14 +51,14 @@ Client.init(
 
     {
         hooks: {
-            beforeCreate: async (newClientData) => {
-                newClientData.password = await bcrypt.hash(newClientData.password, 10);
-                return newClientData;
-            },
-            beforeUpdate: async (updatedClientData) => {
-                updatedClientData.password = await bcrypt.hash(updatedClientData.password, 10);
-                return updatedClientData;
-            },
+            // beforeCreate: async (newClientData) => {
+            //     newClientData.password = await bcrypt.hash(newClientData.password, 10);
+            //     return newClientData;
+            // },
+            // beforeUpdate: async (updatedClientData) => {
+            //     updatedClientData.password = await bcrypt.hash(updatedClientData.password, 10);
+            //     return updatedClientData;
+            // },
         },
         sequelize,
         timestamps: false,
