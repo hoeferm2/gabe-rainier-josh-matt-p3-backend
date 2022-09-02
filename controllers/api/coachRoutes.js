@@ -80,6 +80,7 @@ router.post("/login", (req, res) => [
   })
 ])
 
+
 router.get("/user-from-token", (req, res) => {
   const token = req.headers.authorization.split(" ")[1]
   try {
