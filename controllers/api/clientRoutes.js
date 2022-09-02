@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Client, Exercise } = require('../../models');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 
 router.get("/", (req, res) => {
