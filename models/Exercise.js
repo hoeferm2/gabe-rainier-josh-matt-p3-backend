@@ -2,10 +2,10 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Exercise extends Model {
-   
-    };
 
-    Exercise.init(
+};
+
+Exercise.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -15,30 +15,44 @@ class Exercise extends Model {
         },
         exerciseName: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
-    
+
         sets: {
             type: DataTypes.INTEGER,
             allowNull: true,
-            unique: false,
         },
         reps: {
             type: DataTypes.INTEGER,
-            allowNull: true,
-            unique: false,
+            allowNull: true
         },
-
-    //TODO: Need to figure out date datatype.
-        dateAssigned: {
-            type: DataTypes.timestamps
+        weight: {
+            type: DataTypes.INTEGER,
+            allowNull: true
         },
+        client_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'client',
+                key: 'id',
+            },
+        },
+        isCompleted: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        }
     },
 
+    // //TODO: Need to figure out date datatype.
+    //     dateAssigned: {
+    //         type: Date
+    //     },
+
+
     {
-    
+
         sequelize,
-        timestamps: false,
+        timestamps: true,
         freezeTableName: true,
         underscored: true,
         modelName: 'exercise',

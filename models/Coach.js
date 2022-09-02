@@ -16,14 +16,6 @@ Coach.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        firstName: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-        lastName: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
         username: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -44,17 +36,21 @@ Coach.init(
                 len: [8, 20]
             },
         },
+        // coach_code: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        // }
     },
 
     {
         hooks: {
-            beforeCreate: async (newcoachData) => {
-                newcoachData.password = await bcrypt.hash(newcoachData.password, 10);
-                return newcoachData;
+            beforeCreate: async (newCoachData) => {
+                newCoachData.password = await bcrypt.hash(newCoachData.password, 10);
+                return newCoachData;
             },
-            beforeUpdate: async (updatedcoachData) => {
-                updatedcoachData.password = await bcrypt.hash(updatedcoachData.password, 10);
-                return updatedcoachData;
+            beforeUpdate: async (updatedCoachData) => {
+                updatedCoachData.password = await bcrypt.hash(updatedCoachData.password, 10);
+                return updatedCoachData;
             },
         },
         sequelize,

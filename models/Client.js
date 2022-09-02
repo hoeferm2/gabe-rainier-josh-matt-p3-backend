@@ -16,14 +16,6 @@ Client.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        firstName: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-        lastName: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
         username: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -47,10 +39,14 @@ Client.init(
         coach_id: {
             type: DataTypes.INTEGER,
             references: {
-              model: 'coach',
-              key: 'id',
+                model: 'coach',
+                key: 'id',
             },
-          },
+        },
+        // is_coach: {
+        //     type: DataTypes.BOOLEAN,
+        //     default: false
+        // }
     },
 
     {
