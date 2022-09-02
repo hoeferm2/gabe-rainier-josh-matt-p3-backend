@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 
 
 const sess = {
-  secret: 'Protected access pages',
+  secret: 'THEMOSTSECRET',
   cookie: {},
   resave: false,
   saveUninitialized: true,
