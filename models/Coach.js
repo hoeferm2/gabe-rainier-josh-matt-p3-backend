@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const sequelize = require('../config/connection');
 
 class Coach extends Model {
-    // checkPassword(coachPw) {
-    //     return bcrypt.compareSync(coachPw, this.password)
-    // };
+    checkPassword(coachPw) {
+        return bcrypt.compareSync(coachPw, this.password)
+    };
 };
 
 Coach.init(
@@ -44,14 +44,14 @@ Coach.init(
 
     {
         hooks: {
-            // beforeCreate: async (newCoachData) => {
-            //     newCoachData.password = await bcrypt.hash(newCoachData.password, 10);
-            //     return newCoachData;
-            // },
-            // beforeUpdate: async (updatedCoachData) => {
-            //     updatedCoachData.password = await bcrypt.hash(updatedCoachData.password, 10);
-            //     return updatedCoachData;
-            // },
+            beforeCreate: async (newCoachData) => {
+                newCoachData.password = await bcrypt.hash(newCoachData.password, 10);
+                return newCoachData;
+            },
+            beforeUpdate: async (updatedCoachData) => {
+                updatedCoachData.password = await bcrypt.hash(updatedCoachData.password, 10);
+                return updatedCoachData;
+            },
         },
         sequelize,
         timestamps: false,
