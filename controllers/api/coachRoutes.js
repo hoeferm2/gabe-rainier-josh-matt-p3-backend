@@ -56,7 +56,7 @@ router.post("/", (req, res) => {
   })
 })
 
-
+// MHH added username to token 9/3/2022
 router.post("/login", (req, res) => [
   Coach.findOne({
     where: { email: req.body.email }
@@ -69,7 +69,8 @@ router.post("/login", (req, res) => [
     } else {
       const token = jwt.sign({
         id: foundUser.id,
-        email: foundUser.email
+        email: foundUser.email,
+        username: foundUser.username
       }, process.env.JWT_SECRET, {
         expiresIn: "2hr"
       })
