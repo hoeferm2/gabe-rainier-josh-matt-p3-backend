@@ -36,10 +36,11 @@ Coach.init(
                 len: [8, 20]
             },
         },
-        // coach_code: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        // }
+        profile_image: {
+            type: DataTypes.STRING,
+            allowNull: true
+
+        }
     },
 
     {
