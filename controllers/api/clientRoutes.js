@@ -100,13 +100,13 @@ router.delete('/:id', async (req, res) => {
 
 // // TODO: EDIT Client
 
-router.put('/:id', async (req, res) => {
+router.put('/:username', async (req, res) => {
   try {
     const updateClient = await Client.update(
       req.body,
       {
         where: {
-          id: req.params.id,
+          username: req.params.username,
         },
       });
 
