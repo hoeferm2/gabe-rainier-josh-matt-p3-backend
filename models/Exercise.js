@@ -40,6 +40,10 @@ Exercise.init(
         isCompleted: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
+        },
+        dateSelected: {
+            type: DataTypes.STRING,
+            allowNull: false,
         }
     },
 
