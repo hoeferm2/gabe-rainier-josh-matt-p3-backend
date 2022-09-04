@@ -72,6 +72,10 @@ Client.init(
         status: {
             type: DataTypes.STRING,
             allowNull: true
+        },
+        isCoach: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     },
 
