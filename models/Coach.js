@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const sequelize = require('../config/connection');
 
 class Coach extends Model {
@@ -36,10 +36,34 @@ Coach.init(
                 len: [8, 20]
             },
         },
-        profile_image: {
+        profileImage: {
             type: DataTypes.STRING,
             allowNull: true
 
+        },
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        phoneNumber: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        country: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        city: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        status: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     },
 

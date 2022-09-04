@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const sequelize = require('../config/connection');
 
 class Client extends Model {
@@ -44,10 +44,35 @@ Client.init(
                 key: 'id',
             },
         },
-        // is_coach: {
-        //     type: DataTypes.BOOLEAN,
-        //     default: false
-        // }
+        profileImage: {
+            type: DataTypes.STRING,
+            allowNull: true
+
+        },
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        phoneNumber: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        country: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        city: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        status: {
+            type: DataTypes.STRING,
+            allowNull: true
+        }
     },
 
     {
