@@ -33,6 +33,31 @@ router.get("/:id", async (req, res) => {
 });
 
 
+// GET route for getting client by coach id
+router.get("/search/:coachid", async (req, res) => {
+  try {
+    const clientData = await Client.findAll({
+      where:
+      {
+        coach_id: req.params.coachid
+      },
+      include: { model: Exercise },
+    });
+
+    if (!clientData) {
+      res.status(404).json({ message: 'No Clients found with that coach id!' });
+      return;
+    }
+
+    res.status(200).json(clientData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+
 //CREATES Client
 router.post("/", (req, res) => {
   Client.create(req.body).then(newClient => {
