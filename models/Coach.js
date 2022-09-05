@@ -36,11 +36,6 @@ Coach.init(
                 len: [8, 20]
             },
         },
-        profileImage: {
-            type: DataTypes.STRING,
-            allowNull: true
-
-        },
         firstName: {
             type: DataTypes.STRING,
             allowNull: true
@@ -68,6 +63,10 @@ Coach.init(
         isCoach: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
+        },
+        publicId: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     },
 

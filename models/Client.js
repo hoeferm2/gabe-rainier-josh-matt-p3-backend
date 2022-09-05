@@ -44,11 +44,6 @@ Client.init(
                 key: 'id',
             },
         },
-        profileImage: {
-            type: DataTypes.STRING,
-            allowNull: true
-
-        },
         firstName: {
             type: DataTypes.STRING,
             allowNull: true
@@ -76,6 +71,10 @@ Client.init(
         isCoach: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
+        },
+        publicId: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     },
 
