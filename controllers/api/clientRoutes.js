@@ -33,6 +33,31 @@ router.get("/:id", async (req, res) => {
 });
 
 
+// GET route for getting client by coach id
+router.get("/search/:coachid", async (req, res) => {
+  try {
+    const clientData = await Client.findAll({
+      where:
+      {
+        coach_id: req.params.coachid
+      },
+      include: { model: Exercise },
+    });
+
+    if (!clientData) {
+      res.status(404).json({ message: 'No Clients found with that coach id!' });
+      return;
+    }
+
+    res.status(200).json(clientData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+
 //CREATES Client
 router.post("/", (req, res) => {
   Client.create(req.body).then(newClient => {
@@ -67,7 +92,8 @@ router.post("/login", (req, res) => [
       const token = jwt.sign({
         id: foundUser.id,
         email: foundUser.email,
-        username: foundUser.username
+        username: foundUser.username,
+        isCoach: foundUser.isCoach
       }, process.env.JWT_SECRET, {
         expiresIn: "2hr"
       })
@@ -100,13 +126,13 @@ router.delete('/:id', async (req, res) => {
 
 // // TODO: EDIT Client
 
-router.put('/:id', async (req, res) => {
+router.put('/:username', async (req, res) => {
   try {
     const updateClient = await Client.update(
       req.body,
       {
         where: {
-          id: req.params.id,
+          username: req.params.username,
         },
       });
 

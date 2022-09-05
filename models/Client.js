@@ -38,16 +38,45 @@ Client.init(
         },
         coach_id: {
             type: DataTypes.INTEGER,
-            allowNull: true,
+            allowNull: false,
+            defaultValue: 1,
             references: {
                 model: 'coach',
                 key: 'id',
             },
         },
-        // is_coach: {
-        //     type: DataTypes.BOOLEAN,
-        //     default: false
-        // }
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        phoneNumber: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        country: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        city: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        status: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        isCoach: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        publicId: {
+            type: DataTypes.STRING,
+            allowNull: true
+        }
     },
 
     {

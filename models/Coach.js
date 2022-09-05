@@ -36,10 +36,37 @@ Coach.init(
                 len: [8, 20]
             },
         },
-        profile_image: {
+        firstName: {
             type: DataTypes.STRING,
             allowNull: true
-
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        phoneNumber: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        country: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        city: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        status: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        isCoach: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
+        },
+        publicId: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     },
 

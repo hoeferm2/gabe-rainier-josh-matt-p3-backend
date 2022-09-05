@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(routes);
-app.use(fileUpload());
+// app.use(fileUpload());
 
 // Force: is a method that resets dB information, true wipes it, false does not.
 sequelize.sync({ force: true }).then(() => {
