@@ -9,7 +9,8 @@ Coach.hasMany(Client, {
 
 
 Client.belongsTo(Coach, {
-  foreignKey: 'coach_id'
+  foreignKey: 'coach_id',
+  onUpdate: 'CASCADE'
 });
 
 Client.hasMany(Exercise, {
