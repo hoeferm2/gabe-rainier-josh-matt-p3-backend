@@ -39,6 +39,7 @@ Client.init(
         coach_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            unique: false,
             defaultValue: 1,
             references: {
                 model: 'coach',
