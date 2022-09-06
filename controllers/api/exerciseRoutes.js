@@ -18,6 +18,29 @@ router.get("/", (req, res) => {
       res.status(500).json({ msg: "womp womp", err })
     })
   });
+
+// GET route for getting client by coach id
+router.get("/search/:client_id", async (req, res) => {
+  try {
+    const exerciseClient = await Exercise.findAll({
+      where:
+      {
+        client_id: req.params.client_id
+      }
+    });
+
+    if (!exerciseClient) {
+      res.status(404).json({ message: 'No Exercises found with that client id!' });
+      return;
+    }
+
+    res.status(200).json(exerciseClient);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 //DONE
 
 // GET route for getting client by coach id
