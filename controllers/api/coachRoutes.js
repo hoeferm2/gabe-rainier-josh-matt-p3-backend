@@ -20,7 +20,10 @@ router.get("/", (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const coachData = await Coach.findOne(
-      {
+      {where:
+        {
+          id: req.params.id
+        },
         include: { model: Client },
       });
 

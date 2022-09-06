@@ -18,6 +18,9 @@ router.get("/", (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const clientData = await Client.findOne({
+      where: {
+        id = req.params.id
+      }
       include: { model: Exercise },
     });
 
