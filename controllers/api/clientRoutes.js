@@ -150,7 +150,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.put('/:username', async (req, res) => {
+router.put('/roster/:username', async (req, res) => {
   try {
     const updateClient = await Client.update(
       req.body,
