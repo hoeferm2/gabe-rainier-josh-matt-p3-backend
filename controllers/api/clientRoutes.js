@@ -18,6 +18,9 @@ router.get("/", (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const clientData = await Client.findOne({
+      where: {
+        id: req.params.id
+      },
       include: { model: Exercise },
     });
 
@@ -125,6 +128,27 @@ router.delete('/:id', async (req, res) => {
 });
 
 // // TODO: EDIT Client
+
+router.put('/:id', async (req, res) => {
+  try {
+    const updateClient = await Client.update(
+      req.body,
+      {
+        where: {
+          id: req.params.id,
+        },
+      });
+
+    if (!updateClient) {
+      res.status(404).json({ message: 'No client found with this id!' });
+      return;
+    }
+
+    res.status(200).json(updateClient);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.put('/:username', async (req, res) => {
   try {
