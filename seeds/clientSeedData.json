@@ -1,39 +1,53 @@
 [
-    {
-      "username": "harry",
-      "email": "harry@gmail.com",
-      "password": "password",
-      "coach_id": 1
-    },
-    {
-      "username": "rainier",
-      "email": "rainier@gmail.com",
-      "password": "password",
-      "coach_id": 1
-    },
-    {
-      "username": "gabe",
-      "email": "gabe@gmail.com",
-      "password": "password",
-      "coach_id": 1
-    },
-    {
-      "username": "matt",
-      "email": "matt@gmail.com",
-      "password": "password",
-      "coach_id": 2
-    },
-    {
-      "username": "josh",
-      "email": "josh@gmail.com",
-      "password": "password",
-      "coach_id": 2
-    },
-    {
-      "username": "joe",
-      "email": "joe@gmail.com",
-      "password": "password",
-      "coach_id": 2
-    }
-  ]
-  
+  {
+    "username": "theDude",
+    "email": "harry@gmail.com",
+    "password": "password"
+  },
+  {
+    "username": "theDude2",
+    "email": "rainier@gmail.com",
+    "password": "password"
+  },
+  {
+    "username": "theDude3",
+    "email": "gabe@gmail.com",
+    "password": "password"
+  },
+  {
+    "username": "theDude4",
+    "email": "matt@gmail.com",
+    "password": "password"
+  },
+  {
+    "username": "theDude5",
+    "email": "josh@gmail.com",
+    "password": "password"
+  },
+  {
+    "username": "theDude6",
+    "email": "kyle@gmail.com",
+    "password": "password"
+  },  
+  {
+    "username": "theDude7",
+    "email": "alan@gmail.com",
+    "password": "password"
+  },
+  {
+    "username": "theDude8",
+    "email": "ron@gmail.com",
+    "password": "password"
+  },
+  {
+    "username": "theDude9",
+    "email": "don@gmail.com",
+    "password": "password"
+  }
+]
+
+
+
+
+
+
